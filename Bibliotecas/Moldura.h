@@ -88,16 +88,12 @@ void LigaCursor(void) {
 
 void Dimensao(char *C, char *L) {
 	char linha[30];
+
 	strcpy(linha, "mode con cols=");
 	strcat(linha, C);
 	strcat(linha, " lines=");
 	strcat(linha, L);
 	system(linha);
-}
-
-void MolduraCompleta(void) {
-	FundoQuadro(1, 1, 114, 22, 3);
-	Moldura(1, 1, 114, 22, 0, 3);
 }
 
 void LimpaLinha(int Num) {
@@ -141,26 +137,36 @@ void ColunaMoldura(int LI, int LF, int Coluna, int CorF, int CorT) {
 	}
 }
 
-void ExibeTexto(int TamC, int Linha, int CorT, int CorF, char *texto, char *titulo) {
-	int CI = TamC / 2 - (strlen(texto) / 2 + 2), CF = TamC / 2 + (strlen(texto) / 2 + 2), LI = Linha - 1, LF = Linha + 1;
-
+void CaixaTexto(int CI, int LI, int CF, int LF, int CorT, int CorF, char* titulo) {
 	Moldura(CI, LI, CF, LF, CorT, CorF);
 	FundoQuadro(CI, LI, CF, LF, CorF);
 	Sombra(CI, LI, CF, LF, 0);
 	Titulo(CI, CF, titulo, LI);
+}
+
+void ExibeTexto(int TamC, int Linha, int CorT, int CorF, char *texto, char *titulo) {
+	int CI = TamC / 2 - (strlen(texto) / 2 + 2), CF = TamC / 2 + (strlen(texto) / 2 + 2), LI = Linha - 1, LF = Linha + 1;
+
+	CaixaTexto(CI,LI,CF,LF,CorT,CorF,titulo);
 	textcolor(CorT);
 	textbackground(CorF);
 	gotoxy(TamC / 2 - strlen(texto) / 2, LI + 1);
 	printf("%s", texto);
 }
 
-void MsgFim(void) {
-	Dimensao("80", "30");
-	Moldura(1, 1, 80, 30, 0, 3);
-	FundoQuadro(1, 1, 80, 30, 3);
+void MolduraCompleta(int CI, int LI, int CF, int LF, int CorT, int CorF) {
+	FundoQuadro(CI,LI,CF,LF,CorF);
+	Moldura(CI,LI,CF,LF,CorT,CorF);
+}
 
-	ExibeTexto(80, 4, 0, 7, "TRABALHO BIMESTRAL - ESTRUTURAS DE DADOS II", "");
-	ExibeTexto(80, 9, 0, 14, "BUSCA DE COORDENADAS UTILIZANDO KD-TREE", "");
-	ExibeTexto(80, 14, 0, 7, "102421080 - MATHEUS OLIVEIRA DA SILVA", "");
-	ExibeTexto(80, 26, 0, 7, "PROF. DR. FRANCISCO ASSIS DA SILVA", "");
+void MsgFim(void) {
+	Dimensao("100", "30");
+	Moldura(1, 1, 100, 30, 0, 3);
+	FundoQuadro(1, 1, 100, 30, 3);
+
+	ExibeTexto(100, 4, 0, 7, "TRABALHO BIMESTRAL - TEORIA DOS GRAFOS", "");
+	ExibeTexto(100, 9, 0, 14, "REPRESENTACAO GRAFICA", "");
+	ExibeTexto(100, 14, 0, 7, "102421080 - MATHEUS AMARAL MATOS", "");
+	ExibeTexto(100, 19, 0, 7, "102421080 - MATHEUS OLIVEIRA DA SILVA", "");
+	ExibeTexto(100, 26, 0, 7, "PROF. daniela ", "");
 }
