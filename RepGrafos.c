@@ -63,6 +63,57 @@ void ExibirMatriz(char *vertices, char mat[10][10], int tam) {
 	getch();
 }
 
+
+void exibirMA(char vertices[30], int TLv, int mat[30][30], int qtdLin){
+	
+	system("cls");
+
+	//exibir vertices
+	for(int i=0;i<TLv;i++)
+		printf("%c ",vertices[i]);
+	printf("\n");
+
+	for(int i=0;i<qtdLin;i++){
+		for(int j=0;j<TLv;j++)
+			printf("%d ",mat[i][j]);
+		printf("\n");
+	}
+	getch();
+}
+
+void lerTxtMA(char vertices[], int *TLv, int mat[30][30], int *qtdLin){
+	char carac;
+	int c=0, num;
+
+	FILE *ptr = fopen("MA.txt","r");
+	if(ptr != NULL)
+	{
+		//anda primeira linha do arq e joga
+		carac = fgetc(ptr);
+		while(carac != '\n' && !feof(ptr))
+		{
+			if(carac != ' ')
+				vertices[(*TLv)++] = carac;
+			carac = fgetc(ptr);
+		}
+
+		*qtdLin=0;
+	
+		//Matriz
+		while(fscanf(ptr,"%d",&num)== 1)// enquanto ler um número inteiro.
+		{
+			mat[*qtdLin][c++] = num;
+			
+			if(c == *TLv)
+			{
+				c=0;
+			(*qtdLin)++;
+			}
+		}
+		fclose(ptr);
+	}
+}
+
 int main(void) {
 	char op, mat[10][10], vertices[10], incidencia[10];
 	int qtVertices = 10, qtIncidencias ,i,j;

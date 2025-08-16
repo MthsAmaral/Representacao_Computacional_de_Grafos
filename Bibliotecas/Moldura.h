@@ -166,7 +166,7 @@ void MsgFim(void) {
 
 	ExibeTexto(100, 4, 0, 7, "TRABALHO BIMESTRAL - TEORIA DOS GRAFOS", "");
 	ExibeTexto(100, 9, 0, 14, "REPRESENTACAO GRAFICA", "");
-	ExibeTexto(100, 14, 0, 7, "102421080 - MATHEUS AMARAL MATOS", "");
+	ExibeTexto(100, 14, 0, 7, "102317852 - MATHEUS AMARAL MATOS", "");
 	ExibeTexto(100, 19, 0, 7, "102421080 - MATHEUS OLIVEIRA DA SILVA", "");
-	ExibeTexto(100, 26, 0, 7, "PROF. daniela ", "");
+	ExibeTexto(100, 26, 0, 7, "PROF. Daniela ", "");
 }
